@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace MyLib\Errors;
+namespace MyLib\Error;
 
 use MyLib\ObjUtil\Obj;
 use MyLib\SysUtil\Helper\PhpHelper;

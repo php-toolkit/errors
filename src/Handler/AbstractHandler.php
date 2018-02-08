@@ -6,7 +6,7 @@
  * @license   https://github.com/slimphp/Slim/blob/3.x/LICENSE.md (MIT License)
  */
 
-namespace MyLib\Errors\Handler;
+namespace MyLib\Error\Handler;
 
 use Psr\Http\Message\ServerRequestInterface;
 

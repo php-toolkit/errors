@@ -7,13 +7,13 @@
  * @from https://github.com/phalcon/phalcon-devtools/blob/master/scripts/Phalcon/Error/ErrorHandler.php
  */
 
-namespace MyLib\Errors;
+namespace MyLib\Error;
 
 use Inhere\Library\Utils\LiteLogger as Logger;
 
 /**
  * Class LiteErrorHandler
- * @package MyLib\Errors
+ * @package MyLib\Error
  */
 class LiteErrorHandler
 {
