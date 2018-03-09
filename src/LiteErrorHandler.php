@@ -68,7 +68,7 @@ class LiteErrorHandler
      */
     public function handle(ErrorPayload $error)
     {
-d        $type = $this->mapErrors($error->type());
+        $type = $this->mapErrors($error->type());
         $message = "$type: {$error->message()} in {$error->file()} on line {$error->line()}";
 
         if ($this->logger) {
