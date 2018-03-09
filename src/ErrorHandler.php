@@ -11,7 +11,7 @@
 namespace MyLib\Error;
 
 use MyLib\ObjUtil\Obj;
-use MyLib\SysUtil\Helper\PhpHelper;
+use MyLib\PhpUtil\PhpHelper;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;

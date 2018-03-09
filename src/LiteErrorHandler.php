@@ -9,14 +9,19 @@
 
 namespace MyLib\Error;
 
-use Inhere\Library\Utils\LiteLogger as Logger;
-
 /**
  * Class LiteErrorHandler
  * @package MyLib\Error
  */
 class LiteErrorHandler
 {
+    /**
+     * logger
+     *
+     * @var Psr\Log\LoggerInterface
+     */
+    public $logger;
+
     /**
      * Registers itself as error and exception handler.
      */
@@ -63,13 +68,11 @@ class LiteErrorHandler
      */
     public function handle(ErrorPayload $error)
     {
-        $di = container();
-        $type = $this->mapErrors($error->type());
+d        $type = $this->mapErrors($error->type());
         $message = "$type: {$error->message()} in {$error->file()} on line {$error->line()}";
 
-        if ($di->has('logger')) {
-            $logger = $di->get('logger');
-            $logger->log($this->mapErrorsToLogType($error->type()), $message);
+        if ($this->logger) {
+            $this->logger->log($this->mapErrorsToLogType($error->type()), $message);
         }
 
         switch ($error->type()) {
