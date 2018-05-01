@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace MyLib\Error;
+namespace Toolkit\Error;
 
-use MyLib\ObjUtil\Obj;
-use MyLib\PhpUtil\PhpHelper;
+use Toolkit\ObjUtil\Obj;
+use Toolkit\PhpUtil\PhpHelper;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;

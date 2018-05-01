@@ -6,7 +6,7 @@
  * @license   https://github.com/slimphp/Slim/blob/3.x/LICENSE.md (MIT License)
  */
 
-namespace MyLib\Error\Handler;
+namespace Toolkit\Error\Handler;
 
 use Inhere\Http\Body;
 use Psr\Http\Message\ResponseInterface;

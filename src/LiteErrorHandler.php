@@ -7,11 +7,11 @@
  * @from https://github.com/phalcon/phalcon-devtools/blob/master/scripts/Phalcon/Error/ErrorHandler.php
  */
 
-namespace MyLib\Error;
+namespace Toolkit\Error;
 
 /**
  * Class LiteErrorHandler
- * @package MyLib\Error
+ * @package Toolkit\Error
  */
 class LiteErrorHandler
 {
