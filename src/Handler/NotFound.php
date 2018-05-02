@@ -11,15 +11,18 @@ namespace Toolkit\Error\Handler;
 use Inhere\Http\Body;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Toolkit\Error\DetermineContentTypeTrait;
 use UnexpectedValueException;
 
 /**
- * Default Slim application not found handler.
- * It outputs a simple message in either JSON, XML or HTML based on the
- * Accept header.
+ * Class NotFound
+ * @package Toolkit\Error\Handler
+ * @from Slim 3
  */
-class NotFound extends AbstractHandler
+class NotFound
 {
+    use DetermineContentTypeTrait;
+
     /**
      * Invoke not found handler
      * @param  ServerRequestInterface $request The most recent Request object

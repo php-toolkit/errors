@@ -13,7 +13,7 @@
     }
   ],
   "require": {
-    "php": ">=7.0.0",
+    "php": ">7.0.0",
     "toolkit/php-utils": "^1.0",
     "toolkit/obj-utils": "^1.0"
   },

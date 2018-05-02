@@ -1,31 +1,29 @@
 <?php
-/**
- * Slim Framework (https://slimframework.com)
- * @link      https://github.com/slimphp/Slim
- * @copyright Copyright (c) 2011-2017 Josh Lockhart
- * @license   https://github.com/slimphp/Slim/blob/3.x/LICENSE.md (MIT License)
- */
 
 namespace Toolkit\Error\Handler;
 
 use Inhere\Http\Body;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Toolkit\Error\DetermineContentTypeTrait;
 use UnexpectedValueException;
 
 /**
- * Default Slim application not allowed handler
- * It outputs a simple message in either JSON, XML or HTML based on the
- * Accept header.
+ * Class NotAllowed
+ * @package Toolkit\Error\Handler
+ * @from Slim 3
  */
-class NotAllowed extends AbstractHandler
+class NotAllowed
 {
+    use DetermineContentTypeTrait;
+
     /**
      * Invoke error handler
      * @param  ServerRequestInterface $request The most recent Request object
      * @param  ResponseInterface $response The most recent Response object
      * @param  string[] $methods Allowed HTTP methods
      * @return ResponseInterface
+     * @throws \InvalidArgumentException
      * @throws UnexpectedValueException
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $methods)
@@ -57,7 +55,7 @@ class NotAllowed extends AbstractHandler
 
         $body = new Body();
         $body->write($output);
-        $allow = implode(', ', $methods);
+        $allow = \implode(', ', $methods);
 
         return $response
             ->withStatus($status)

@@ -9,29 +9,38 @@
 namespace Toolkit\Error\Handler;
 
 use Psr\Log\LoggerInterface;
+use Toolkit\Error\DetermineContentTypeTrait;
 
 /**
  * Abstract application error handler
  */
-abstract class AbstractError extends AbstractHandler
+abstract class AbstractError
 {
+    use DetermineContentTypeTrait;
+
     /** @var LoggerInterface */
     private $logger;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $displayErrorDetails;
+
+    protected $options = [
+        'displayErrorDetails' => false,
+        'rootPath' => '',
+        'hideRootPath' => true,
+        'rootPlaceholder' => '{project}',
+    ];
 
     /**
      * Constructor
-     * @param bool $displayErrorDetails Set to true to display full details
+     * @param array $options
      * @param LoggerInterface|null $logger
      */
-    public function __construct($displayErrorDetails = false, LoggerInterface $logger = null)
+    public function __construct(array $options = [], LoggerInterface $logger = null)
     {
-        $this->displayErrorDetails = (bool)$displayErrorDetails;
         $this->logger = $logger;
+        $this->options = \array_merge($this->options, $options);
+        $this->displayErrorDetails = (bool)$this->options['displayErrorDetails'];
     }
 
     /**
@@ -41,12 +50,13 @@ abstract class AbstractError extends AbstractHandler
      */
     protected function writeToErrorLog($throwable)
     {
-//        if ($this->displayErrorDetails) {
-//            return;
-//        }
+        // if ($this->displayErrorDetails) {
+        //     return;
+        // }
 
-        $message = 'Light Cms Error:' . PHP_EOL;
+        $message = 'Application Error:' . PHP_EOL;
         $message .= $this->renderThrowableAsText($throwable);
+
         while ($throwable = $throwable->getPrevious()) {
             $message .= PHP_EOL . 'Previous error:' . PHP_EOL;
             $message .= $this->renderThrowableAsText($throwable);
@@ -71,7 +81,7 @@ abstract class AbstractError extends AbstractHandler
         }
 
         if ($message = $throwable->getMessage()) {
-            $text .= sprintf('Message: %s' . PHP_EOL, htmlentities($message));
+            $text .= sprintf('Message: %s' . PHP_EOL, \htmlentities($message));
         }
 
         if ($file = $throwable->getFile()) {
@@ -98,7 +108,7 @@ abstract class AbstractError extends AbstractHandler
         if ($this->logger) {
             $this->logger->error($message);
         } else {
-            error_log($message);
+            echo $message;
         }
     }
 }
