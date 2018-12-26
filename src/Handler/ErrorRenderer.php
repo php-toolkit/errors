@@ -2,7 +2,7 @@
 
 namespace Toolkit\Error\Handler;
 
-use Inhere\Http\Body;
+use PhpComp\Http\Message\Body;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use UnexpectedValueException;
